@@ -1,0 +1,19 @@
+.Search .search-button {
+  transition: all 200ms ease-in-out;
+}
+.Search .current-button {
+  transition: all 200ms ease-in-out;
+  border: black solid 1px;
+}
+
+.Search .search-button:hover {
+  color: white;
+  background-color: black;
+  border-color: black;
+}
+
+.Search .current-button:hover {
+  color: black;
+  background-color: white;
+  border: black solid 1px;
+}

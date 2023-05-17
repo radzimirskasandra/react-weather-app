@@ -1,0 +1,61 @@
+.Weather .weather-icon {
+  width: 100px;
+  display: flex;
+  justify-content: center;
+}
+.city-date {
+  margin-left: 20px;
+}
+
+.Weather {
+  font-family: "Roboto Slab", serif;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.Weather h1 {
+  font-size: 48px;
+  text-transform: capitalize;
+}
+
+.Weather h1 .celsius {
+  font-size: 18px;
+  position: relative;
+  top: -20px;
+}
+
+.Weather h3 {
+  font-size: 20px;
+  text-transform: capitalize;
+}
+
+.Weather h2 {
+  font-size: 30px;
+  text-transform: capitalize;
+}
+
+.Weather h4 {
+  font-size: 16px;
+  text-transform: capitalize;
+}
+
+@media (max-width: 576px) {
+  .Weather .text-left {
+    text-align: center;
+  }
+
+  .Weather h1 {
+    font-size: 30px;
+  }
+
+  .Weather .city-date {
+    margin-left: 0px;
+    margin-bottom: 20px;
+  }
+  .Weather h1 .celsius {
+    position: relative;
+    top: -9px;
+  }
+}
