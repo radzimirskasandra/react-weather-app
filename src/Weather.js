@@ -1,6 +1,7 @@
 import "./Weather.css";
 import Date from "./Date";
 import WeatherIcon from "./WeatherIcon.js";
+import WeatherUnits from "./WeatherUnits";
 
 export default function Weather(props) {
   return (
@@ -21,10 +22,7 @@ export default function Weather(props) {
       </div>
       <div className="col-sm-6">
         <div className="row justify-content-around">
-          <h1 className="mt-2">
-            {Math.round(props.weatherData.temperature)}
-            <span className="celsius">°C</span>
-          </h1>
+          <WeatherUnits celsius={props.weatherData.temperature} />
           <div className=" weather-icon">
             <WeatherIcon code={props.weatherData.icon} />
           </div>
