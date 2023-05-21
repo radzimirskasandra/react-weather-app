@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Search.css";
-import Date from "./Date";
+import Weather from "./Weather";
 
-export default function Search() {
+export default function Search(props) {
   let [city, setCity] = useState(" ");
   let [loaded, setLoaded] = useState(false);
   let [weather, setWeather] = useState(null);
@@ -11,11 +11,12 @@ export default function Search() {
   function showTemperature(response) {
     setLoaded(true);
     setWeather({
+      city: response.data.name,
       temperature: response.data.main.temp,
       description: response.data.weather[0].description,
       wind: response.data.wind.speed,
       humidity: response.data.main.humidity,
-      icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      icon: response.data.weather[0].icon,
     });
   }
   function handleCity(event) {
@@ -72,38 +73,12 @@ export default function Search() {
       <div>
         {form}
         <div className="Weather">
-          <div className="row">
-            <div className="col-sm-6">
-              <div className="row city-date justify-content-start">
-                <h1 className="mt-2 text-left">{city}</h1>
-                <h3 className="text-left">
-                  <Date />
-                </h3>
-                <h4 className="text-left">
-                  Humidity: {Math.round(weather.humidity)}%
-                </h4>
-                <h4 className="text-left">
-                  Wind: {Math.round(weather.wind)} km/h
-                </h4>
-              </div>
-            </div>
-            <div className="col-sm-6">
-              <div className="row justify-content-around">
-                <h1 className="mt-2">
-                  {Math.round(weather.temperature)}
-                  <span className="celsius">°C</span>
-                </h1>
-                <div className=" weather-icon">
-                  <img src={weather.icon} alt={weather.description} />
-                </div>
-                <h2>{weather.description}</h2>
-              </div>
-            </div>
-          </div>
+          <Weather weatherData={weather} />
         </div>
       </div>
     );
   } else {
-    return form;
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${props.cityOnLoad}&appid=38146ecc463f344c9fc5c923d091b549&units=metric`;
+    axios.get(url).then(showTemperature);
   }
 }
